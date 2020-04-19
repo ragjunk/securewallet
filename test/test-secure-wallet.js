@@ -55,4 +55,20 @@ describe('Secure wallet backup with Shamir\'s secret sharing scheme' , function 
         done();
     });
     
+    it('should fail to restore seed phrases if wrong answers are provided', (done) => {
+        const restoredWallet = new SecureWallet();
+        let answers = {'A1': 'Mount Tallac', 'A3': 'The Great Gatsby', 'A4': 'Dagios Flowers' };
+
+        let recoveredSeedPhrases;
+        
+        try {
+            recoveredSeedPhrases = restoredWallet.restoreWallet('a@company.com', encryptedSafeResponse, answers);
+        } catch(e) {
+            recoveredSeedPhrases = null;
+        }
+
+        expect(recoveredSeedPhrases).to.not.equal(seedPhrases);
+        done();
+    });
+    
 });

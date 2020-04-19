@@ -94,10 +94,10 @@ module.exports = class SecureWallet {
         
         //console.log('\nRecovery shares:'); console.log(recoveryShares);
         
-        const recovered = sss.combine(recoveryShares);
-        console.log('\nRecovered mnemonic:'); console.log(recovered.toString());
+        this.mnemonic = sss.combine(recoveryShares).toString();
+        console.log('\nRecovered mnemonic:'); console.log(this.mnemonic);
         
-        return recovered.toString();
+        return this.mnemonic;
     }
     
 }
